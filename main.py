@@ -71,7 +71,7 @@ async def download_pdf(url: str) -> bytes:
                     raise HTTPException(status_code=400,
                                         detail=f"URL does not point to a PDF file. Content-Type: {content_type}")
                 pdf_bytes = await response.read()
-                MAX_PDF_SIZE = 10 * 1024 * 1024  # 10 MB
+                MAX_PDF_SIZE = 100 * 1024 * 1024  # 100 MB
                 if len(pdf_bytes) > MAX_PDF_SIZE:
                     raise HTTPException(status_code=400, detail="PDF file is too large.")
                 return pdf_bytes
@@ -87,8 +87,8 @@ async def convert_pdf_to_images(pdf_bytes: bytes) -> List[bytes]:
     try:
         log_resource_usage("Before Conversion")
         image_bytes_list = []
-        MAX_PAGE_COUNT = 300  # Limit the number of pages to process
-        DPI = 100  # Set DPI to reduce resource usage
+        MAX_PAGE_COUNT = 5000  # Limit the number of pages to process
+        DPI = 71  # Set DPI to reduce resource usage
         with fitz.open(stream=pdf_bytes, filetype="pdf") as doc:
             page_count = doc.page_count
             logging.info(f"PDF has {page_count} pages.")
