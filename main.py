@@ -8,7 +8,7 @@ import logging
 from dotenv import load_dotenv
 import psutil
 import sys
-import PyMuPDF
+import fitz
 import io
 import base64
 
