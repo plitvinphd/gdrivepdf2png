@@ -1,14 +1,3 @@
-fastapi
-uvicorn
-aiohttp
-python-dotenv
-python-multipart
-PyMuPDF
-psutil
-2. Dockerfile
-Update your Dockerfile to install the required system dependencies for PyMuPDF:
-
-dockerfile
 Copy code
 FROM python:3.9-slim
 
